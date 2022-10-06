@@ -1,24 +1,24 @@
-SELECT 
-date, platform_id, sum(total_size), sum(size_of_the_community)
-from highlevelkpi.mobilisation_community where date >= 'date' group by date, platform_id order by date, platform_id
+SELECT DISTINCT 
+DATE, count(user_id)
+FROM highlevelkpi.cvtraining_course_sign_ups where date >= 'date' group by date order by date
 
-SELECT
-  date, platform_id, sum(reads_and_plays), sum(likes), sum(comments), sum(shares)
+SELECT DISTINCT 
+  "user join date", count(unique_user_id)
 FROM
-    highlevelkpi.engagements where date >= 'date' group by date, platform_id order by date, platform_id
+    highlevelkpi.imagen_cvresources_subscribers where "user join date" >= 'date' group by "user join date" order by "user join date"
 
 SELECT 
-date, count(church_name), sum(intro_to_jesus)
-from highlevelkpi.cvoutreach_contributing_churches_itj where date >= 'date' group by date order by date
+date, count(*)
+FROM highlevelkpi.imagen_cvresources_downloads where date >= 'date' group by date order by date
 
 SELECT 
-DATE, count(church_name)
-from highlevelkpi.cvoutreach_contributing_churches where date >= 'date' group by date order by date
+date_uploaded, COUNT(media_id), COUNT(record_id)
+from highlevelkpi.imagen_cvresources_videos_library where date_uploaded >= 'date' group by date_uploaded order by date_uploaded
 
 SELECT 
-date, count(church_name), SUM(responses)
-FROM highlevelkpi.cvoutreach_receiving_churches_responses where date >= 'date' group by date order by date
+DATE, COUNT(user_id)
+from highlevelkpi.cvtraining_lecture_completions where date >= 'date'group by date order by date
 
 SELECT 
-date, COUNT(church_name)
-FROM highlevelkpi.cvoutreach_receiving_churches where date >= 'date' group by date order by date
+DATE, COUNT(user_id)
+FROM highlevelkpi.cvtraining_course_completions where date >= 'date' group by date order by date;
